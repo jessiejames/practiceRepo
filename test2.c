@@ -12,9 +12,10 @@ unsigned char delay; //global used in the Assembly code
 // We need "delay" to be a global variable because it will
 // be used by a segment of the program that is written in
 // assembly language -- see below in function "delay10us".
+//
 // The C compiler allows assembly language fragments to
-// be written in a C language program.  Function names
-// and variable names can be translated into assembly
+// be written in a C language program.  Names of functions
+// and variables can be translated into assembly
 // language labels.  For example, the C variable name "delay"
 // is the same as the assembly language label "_delay".
 // However, if "delay" were a local variable in a C function,
@@ -27,19 +28,19 @@ unsigned char delay; //global used in the Assembly code
 // So we use a global variable for "delay".
 //
 // We also use a "char" declaration of "delay" rather than
-// an int declaration because we only want to use up a byte
+// an "int" declaration because we only want to use up a byte
 // of memory rather than multiple bytes.
 
 main(void)
 {
 TRISB = 0x00; /* All ports of PORTB are outputs */
 
-/* RB1 is an output and the rest of PORTA are inputs */
-while(1) { /* Turn RB0 and RB1 on-and-off */
+/* PORTB is an output, and in particular RB0 is an output */
+while(1) { /* Turn RB0 on-and-off */
 	RB0 = 0;  
-	delay_ms(250); // Delay of a quarter-second
+	delay_ms(250); // Delay of a quarter-second (= 250 ms)
 	RB0 = 1;
- 	delay_ms(250); // Delay of a quarter-second
+ 	delay_ms(250); // Delay of a quarter-second (= 250 ms)
 } /* End while-loop */
 } /* End main */
 
